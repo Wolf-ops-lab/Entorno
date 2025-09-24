@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Calculadora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff4e50, #1fddff);
+      margin: 0;
+    }
+    .calculadora {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      color: #333;
+    }
+    input {
+      width: 100px;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .botones {
+      margin-top: 15px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    .suma { background: #4caf50; color: white; }
+    .resta { background: #f44336; color: white; }
+    .multi { background: #2196f3; color: white; }
+    .divi { background: #ff9800; color: white; }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <h1>Mini Calculadora</h1>
+    <input type="number" id="num1" placeholder="Número 1">
+    <input type="number" id="num2" placeholder="Número 2">
+    <div class="botones">
+      <button class="suma" onclick="operar('suma')">Sumar</button>
+      <button class="resta" onclick="operar('resta')">Restar</button>
+      <button class="multi" onclick="operar('multi')">Multiplicar</button>
+      <button class="divi" onclick="operar('divi')">Dividir</button>
+    </div>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function operar(operacion) {
+      const n1 = parseFloat(document.getElementById("num1").value);
+      const n2 = parseFloat(document.getElementById("num2").value);
+
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById("resultado").innerText = "Introduce dos números válidos.";
+        return;
+      }
+
+      let resultado = 0;
+      switch(operacion) {
+        case 'suma': resultado = n1 + n2; break;
+        case 'resta': resultado = n1 - n2; break;
+        case 'multi': resultado = n1 * n2; break;
+        case 'divi':
+          if (n2 === 0) {
+            document.getElementById("resultado").innerText = "No se puede dividir entre 0.";
+            return;
+          }
+          resultado = n1 / n2;
+          break;
+      }
+
+      document.getElementById("resultado").innerText = "Resultado: " + resultado;
+    }
+  </script>
+</body>
+</html>
